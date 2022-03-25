@@ -32,6 +32,7 @@ RUN npm install --global puppeteer
 
 #Install SFDX-CLI Plugins
 RUN echo "y" | sfdx plugins:install vlocityestools
+RUN sfdx plugins:install @salesforce/sfdx-scanner
 
 # Testing
 #RUN git --version
