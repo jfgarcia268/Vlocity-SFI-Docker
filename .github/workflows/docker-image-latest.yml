@@ -2,7 +2,7 @@ name: SFI Latest Docker Image Build and Push
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   docker:
