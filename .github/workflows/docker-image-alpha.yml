@@ -3,6 +3,7 @@ name: Alpha - SFI Latest Docker Image Build and Push
 on:
   push:
     branches: [ alpha ]
+  workflow_dispatch:
   
 jobs:
   docker:
