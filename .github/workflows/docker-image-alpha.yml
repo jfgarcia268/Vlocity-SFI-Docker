@@ -1,7 +1,8 @@
-name: Docker Image CI
+name: alpha - SFI Latest Docker Image Build and Push
 
-on: 
-  workflow_dispatch:
+on:
+  push:
+    branches: [ alpha ]
   
 jobs:
   docker:

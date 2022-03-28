@@ -1,4 +1,4 @@
-name: SFI Docker Image Build and Push With Tag
+name: Tag - SFI Docker Image Build and Push With Tag
 
 on: 
   workflow_dispatch:

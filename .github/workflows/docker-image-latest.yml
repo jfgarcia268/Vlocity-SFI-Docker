@@ -1,4 +1,4 @@
-name: SFI Latest Docker Image Build and Push
+name: Latest - SFI Latest Docker Image Build and Push
 
 on:
   push:
