@@ -28,4 +28,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          no-cache: true
           tags: jfgarcia268/vlocity_sfdx:${{ github.event.inputs.tag }}
