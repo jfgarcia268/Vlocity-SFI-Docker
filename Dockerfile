@@ -15,7 +15,7 @@ RUN apt-get install -y unzip
 
 #Install NodeJS
 RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash -
 RUN apt-get -y install nodejs
 
 #Install puppeteer Dep
@@ -42,3 +42,4 @@ RUN vlocity help
 RUN sfdx vlocityestools
 RUN sfdx force
 RUN sfdx plugins --core
+RUN sfdx --version --verbose
