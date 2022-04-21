@@ -25,7 +25,6 @@ RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor
 RUN npm config set unsafe-perm=true
 RUN npm install --global sfdx-cli
 RUN npm install --global vlocity@alpha
-#RUN npm install --global vlocity@alpha
 RUN npm install puppeteer --save
 RUN npm install --global puppeteer
 #--unsafe-perm=true
