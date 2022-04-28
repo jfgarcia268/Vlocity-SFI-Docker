@@ -13,6 +13,9 @@ RUN apt install -y git
 #Install unzip
 RUN apt-get install -y unzip
 
+#Install Java
+RUN apt-get --assume-yes install default-jdk
+
 #Install NodeJS
 RUN apt-get -y install curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash -
