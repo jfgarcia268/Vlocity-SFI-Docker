@@ -28,3 +28,5 @@ jobs:
           push: true
           no-cache: true
           tags: jfgarcia268/vlocity_sfdx:latest-np
+          secrets: |
+            "SF_GITHUB_PASS=${{ secrets.SF_GITHUB_PASS }}"

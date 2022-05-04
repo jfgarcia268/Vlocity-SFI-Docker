@@ -36,6 +36,10 @@ RUN npm install --global puppeteer
 RUN echo "y" | sfdx plugins:install vlocityestools
 RUN sfdx plugins:install @salesforce/sfdx-scanner
 
+RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
+    export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
+ && echo "y" | sfdx plugins:install "https://jgarciagonzalezSFDC:${SF_GITHUB_PASS}@github.com/CSGAMERSServices/acu-pack.git"
+
 RUN chmod -R go+rwx ${HOME}
 RUN chmod -R go+rwx /root
 
