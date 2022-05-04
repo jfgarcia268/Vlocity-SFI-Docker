@@ -36,6 +36,9 @@ RUN npm install --global puppeteer
 RUN echo "y" | sfdx plugins:install vlocityestools
 RUN sfdx plugins:install @salesforce/sfdx-scanner
 
+RUN chmod -R go+rwx ${HOME}
+RUN chmod -R go+rwx /root
+
 # Version Summary
 RUN git --version
 RUN node --version
