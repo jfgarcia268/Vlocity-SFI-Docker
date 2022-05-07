@@ -8,7 +8,12 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: heyhey
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.2
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -24,9 +29,20 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v2
+        if: steps.branch-name.outputs.is_default == 'true'
         with:
           push: true
           no-cache: true
-          tags: jfgarcia268/vlocity_sfdx:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vlocity_sfdx:latest
+          secrets: |
+            "SF_GITHUB_PASS=${{ secrets.SF_GITHUB_PASS }}"
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        if: steps.branch-name.outputs.is_default == 'false'
+        with:
+          push: true
+          no-cache: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vlocity_sfdx:${{ steps.branch-name.outputs.current_branch }}
           secrets: |
             "SF_GITHUB_PASS=${{ secrets.SF_GITHUB_PASS }}"
