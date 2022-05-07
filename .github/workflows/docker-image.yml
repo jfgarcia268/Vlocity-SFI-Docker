@@ -1,16 +1,17 @@
-name: Tag - SFI Docker Image Build and Push With Tag
+name: SFI Docker Image Build and Push
 
-on: 
+on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Docker Tag'     
-        required: true
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.2
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -24,11 +25,25 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push Latest
         uses: docker/build-push-action@v2
+        if: steps.branch-name.outputs.is_default == 'true'
         with:
           push: true
           no-cache: true
-          tags: jfgarcia268/vlocity_sfdx:${{ github.event.inputs.tag }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/vlocity_sfdx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/sfdx_vlocity_java:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/sfdx_vlocity_puppeteer:latest
+          secrets: |
+            "SF_GITHUB_PASS=${{ secrets.SF_GITHUB_PASS }}"
+      -
+        name: Build and push - Branch Name
+        uses: docker/build-push-action@v2
+        if: steps.branch-name.outputs.is_default == 'false'
+        with:
+          push: true
+          no-cache: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vlocity_sfdx:${{ steps.branch-name.outputs.current_branch }}
           secrets: |
             "SF_GITHUB_PASS=${{ secrets.SF_GITHUB_PASS }}"
