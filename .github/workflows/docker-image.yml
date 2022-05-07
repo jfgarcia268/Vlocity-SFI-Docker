@@ -12,6 +12,10 @@ jobs:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v5.2
+      - name: Branch Info   
+        run: |
+          echo "Branch Name: ${{ steps.branch-name.outputs.current_branch }}"
+          echo "Is Default Branch: ${{ steps.branch-name.outputs.is_default }}"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -27,7 +31,7 @@ jobs:
       -
         name: Build and push Latest
         uses: docker/build-push-action@v2
-        if: ${{ steps.branch-name.outputs.current_branch }} == 'main'
+        if: ${{ steps.branch-name.outputs.current_branch == 'main' }} 
         with:
           push: true
           no-cache: true
@@ -40,7 +44,7 @@ jobs:
       -
         name: Build and push - Branch Name
         uses: docker/build-push-action@v2
-        if: ${{ steps.branch-name.outputs.current_branch }} != 'main'
+        if: ${{ steps.branch-name.outputs.current_branch != 'main' }} 
         with:
           push: true
           no-cache: true
