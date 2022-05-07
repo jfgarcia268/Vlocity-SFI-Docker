@@ -2,7 +2,7 @@ name: SFI Docker Image Build and Push
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, alpha, beta, test, latest-np ]
   workflow_dispatch:
 
 jobs:
