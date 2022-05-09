@@ -16,20 +16,16 @@ jobs:
         run: |
           echo "Branch Name: ${{ steps.branch-name.outputs.current_branch }}"
           echo "Is Default Branch: ${{ steps.branch-name.outputs.is_default }}"
-      -
-        name: Set up QEMU
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
+      - name: Login to DockerHub
         uses: docker/login-action@v1 
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push Latest
+      - name: Build and push - Latest
         uses: docker/build-push-action@v2
         if: ${{ steps.branch-name.outputs.current_branch == 'main' }} 
         with:
@@ -41,8 +37,7 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/sfdx_vlocity_puppeteer:latest
           secrets: |
             "SF_GITHUB_PASS=${{ secrets.SF_GITHUB_PASS }}"
-      -
-        name: Build and push - Branch Name
+      - name: Build and push - Branch Name
         uses: docker/build-push-action@v2
         if: ${{ steps.branch-name.outputs.current_branch != 'main' }} 
         with:
