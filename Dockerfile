@@ -21,16 +21,10 @@ RUN apt-get -y install curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash -
 RUN apt-get -y install nodejs
 
-#Install puppeteer Dep
-RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0
 
 #Install NodeJS Packages
 RUN npm config set unsafe-perm=true
 RUN npm install --global sfdx-cli
-RUN npm install --global vlocity
-RUN npm install puppeteer --save
-RUN npm install --global puppeteer
-#--unsafe-perm=true
 
 #Install SFDX-CLI Plugins
 RUN echo "y" | sfdx plugins:install vlocityestools
@@ -47,8 +41,7 @@ RUN chmod -R go+rwx /root
 RUN git --version
 RUN node --version
 RUN npm --version
-RUN vlocity help
-RUN sfdx vlocityestools
+RUN sfdx vlocityesstools
 RUN sfdx force
 RUN sfdx plugins --core
 RUN sfdx --version --verbose
