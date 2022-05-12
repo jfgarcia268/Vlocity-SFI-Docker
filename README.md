@@ -9,3 +9,7 @@
 ### jfgarcia268/vlocity_sfdx:beta
 
 ### jfgarcia268/vlocity_sfdx:alpha
+
+## For Core Only Projects Use:
+
+### jfgarcia268/vlocity_sfdx:core
