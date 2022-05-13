@@ -30,8 +30,8 @@ RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
     export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
  && echo "y" | sfdx plugins:install "https://jgarciagonzalezSFDC:${SF_GITHUB_PASS}@github.com/CSGAMERSServices/acu-pack.git"
 
-RUN chmod -R go+rwx ${HOME} &&\
-    chmod -R go+rwx /root
+RUN chmod -R go+rwx ${HOME}/.local/share &&\
+    chmod -R go+rwx /root/.local/share
 
 # Version Summary
 RUN git --version &&\
