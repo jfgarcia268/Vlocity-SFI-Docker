@@ -20,7 +20,7 @@ RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor
 
 #Install NodeJS Packages
 RUN npm config set unsafe-perm=true &&\
-    npm install --global --global sfdx-cli@7.162.0 &&\
+    npm install --global sfdx-cli@7.162.0 vlocity puppeteer &&\
     npm install puppeteer --save
 
 #Install SFDX-CLI Plugins
