@@ -1,5 +1,9 @@
 FROM ubuntu:16.04
 
+#Create .sfdx folders to resolve Jenkins bug
+RUN mkdir /.cache /.sf /.sfdx &&\
+    chmod 757 /.cache /.sf /.sfdx -R
+
 #Install JQ & unzip
 RUN apt-get update -y &&\
     apt-get install software-properties-common -y &&\
