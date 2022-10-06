@@ -9,7 +9,7 @@ RUN apt-get update -y &&\
     apt-get install software-properties-common -y &&\
     apt-get -y install jq unzip
 
-#Install GIT
+#Install Git
 RUN add-apt-repository ppa:git-core/ppa &&\
     apt update -y &&\
     apt install -y git
@@ -21,7 +21,13 @@ RUN apt-get -y install curl gnupg &&\
 
 #Install SFDX and plugins
 RUN npm config set unsafe-perm=true &&\
-    npm install --global sfdx-cli@7.170.0
+    npm install --global sfdx-cli @salesforce/sfdx-scanner
+
+#Install acu-pack
+RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
+    export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
+    && echo "y" | sfdx plugins:install "https://jgarciagonzalezSFDC:${SF_GITHUB_PASS}@github.com/forcedotcom/acu-pack.git" &&\
+    cp -r /root/.local/share/sfdx/node_modules/acu-pack /usr/lib/node_modules/
 
 RUN chmod -R go+rwx ${HOME} &&\
     chmod -R go+rwx /root
