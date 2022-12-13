@@ -26,7 +26,7 @@ RUN npm config set unsafe-perm=true &&\
 #Install SFDX-CLI Plugins
 RUN echo "y" | sfdx plugins:install vlocityestools &&\
     sfdx plugins:install @salesforce/sfdx-scanner &&\
-    sfdx plugins:install sfdx-git-delta
+    echo "y" | sfdx plugins:install sfdx-git-delta
 
 RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
     export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
