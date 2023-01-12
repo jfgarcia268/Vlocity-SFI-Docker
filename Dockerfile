@@ -20,18 +20,21 @@ RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor
 
 #Install NodeJS Packages
 RUN npm config set unsafe-perm=true &&\
+    #npm install --global sfdx-cli@7.162.0 vlocity puppeteer &&\
     npm install --global sfdx-cli vlocity puppeteer &&\
     npm install puppeteer --save
 
 #Install SFDX-CLI Plugins
 RUN echo "y" | sfdx plugins:install vlocityestools &&\
-    sfdx plugins:install @salesforce/sfdx-scanner 
+    sfdx plugins:install @salesforce/sfdx-scanner &&\
+    echo "y" | sfdx plugins:install sfdx-git-delta
+
 RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
     export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
  && echo "y" | sfdx plugins:install "https://jgarciagonzalezSFDC:${SF_GITHUB_PASS}@github.com/forcedotcom/acu-pack.git"
 
-RUN chmod -R go+rwx ${HOME}/.local/share &&\
-    chmod -R go+rwx /root/.local/share
+RUN chmod -R go+rwx /root &&\
+    rm -rf  /root/.sfdx/key.json 2>&1 >dev/null
 
 # Version Summary
 RUN git --version &&\
