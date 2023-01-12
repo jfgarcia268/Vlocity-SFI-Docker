@@ -41,7 +41,7 @@ RUN git --version &&\
     node --version &&\
     npm --version &&\
     vlocity help &&\
-    sfdx vlocityestools &&\
+    sfdx vlocityestools --help &&\
     sfdx force &&\
     sfdx plugins --core &&\
     sfdx --version --verbose
