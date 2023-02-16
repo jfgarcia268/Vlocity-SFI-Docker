@@ -37,11 +37,11 @@ RUN chmod -R go+rwx /root &&\
     rm -rf  /root/.sfdx/key.json 2>&1 >dev/null
 
 # Version Summary
-RUN git --version &&\
-    node --version &&\
-    npm --version &&\
-    vlocity help &&\
-    sfdx vlocityestools &&\
-    sfdx force &&\
-    sfdx plugins --core &&\
-    sfdx --version --verbose
+#RUN git --version &&\
+#    node --version &&\
+#    npm --version &&\
+#    vlocity help &&\
+#    sfdx vlocityestools &&\
+#    sfdx force &&\
+#   sfdx plugins --core &&\
+#    sfdx --version --verbose
