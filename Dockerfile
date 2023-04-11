@@ -1,9 +1,5 @@
 FROM ubuntu:18.04
 
-#Pre-Config
-#RUN apt-get update && apt-get install -y apt-transport-https
-#RUN echo 'deb https://deb.nodesource.com/setup_18.x' >> /etc/apt/sources.list.d/HDP.list
-
 #Install JQ & unzip
 RUN apt-get update -y &&\
     apt-get install software-properties-common -y &&\
@@ -16,7 +12,7 @@ RUN add-apt-repository ppa:git-core/ppa &&\
 
 #Install NodeJS and Java
 RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
 RUN apt-get install -y nodejs
 RUN apt-get install -y default-jdk
 RUN node -v
