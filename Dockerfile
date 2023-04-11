@@ -9,6 +9,10 @@ RUN apt-get update -y &&\
 RUN add-apt-repository ppa:git-core/ppa &&\
     apt update -y &&\
     apt install -y git
+    
+#Install puppeteer Dep
+RUN apt-get -y install libc6 
+#2.27-3ubuntu1.6
 
 #Install NodeJS and Java
 RUN apt-get -y install curl gnupg
@@ -19,7 +23,7 @@ RUN node -v
 RUN npm -v
 
 #Install puppeteer Dep
-RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0 libc6 2.27-3ubuntu1.6
+RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0
 
 #Install NodeJS Packages
 RUN npm config set unsafe-perm=true &&\
