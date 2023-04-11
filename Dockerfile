@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 
+RUN apt-get update && apt-get install -y apt-transport-https
+
 #Install JQ & unzip
 RUN apt-get update -y &&\
     apt-get install software-properties-common -y &&\
