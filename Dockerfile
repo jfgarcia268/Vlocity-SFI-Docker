@@ -11,16 +11,13 @@ RUN add-apt-repository ppa:git-core/ppa &&\
     apt install -y git
     
 #Install puppeteer Dep
-RUN apt-get -y install libc6 
-#2.27-3ubuntu1.6
+RUN apt-get -y install libc6 2.27-3ubuntu1.6
 
 #Install NodeJS and Java
-RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
-RUN apt-get install -y nodejs
-RUN apt-get install -y default-jdk
-RUN node -v
-RUN npm -v
+RUN apt-get update -y &&\
+    apt-get -y install curl gnupg &&\
+    curl -sL https://deb.nodesource.com/setup_14.x  | bash - &&\
+    apt-get -y install nodejs default-jdk
 
 #Install puppeteer Dep
 RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0
