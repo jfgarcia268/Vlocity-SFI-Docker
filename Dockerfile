@@ -1,5 +1,6 @@
 FROM ubuntu:16.04
 
+#Pre-Config
 RUN apt-get update && apt-get install -y apt-transport-https
 
 #Install JQ & unzip
