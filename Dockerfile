@@ -1,8 +1,8 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 #Pre-Config
-RUN apt-get update && apt-get install -y apt-transport-https
-RUN echo 'deb https://deb.nodesource.com/setup_18.x' >> /etc/apt/sources.list.d/HDP.list
+#RUN apt-get update && apt-get install -y apt-transport-https
+#RUN echo 'deb https://deb.nodesource.com/setup_18.x' >> /etc/apt/sources.list.d/HDP.list
 
 #Install JQ & unzip
 RUN apt-get update -y &&\
