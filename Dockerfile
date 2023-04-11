@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 #Pre-Config
 RUN apt-get update && apt-get install -y apt-transport-https
-RUN docker run --rm --privileged ubuntu hwclock -s
+RUN sudo hwclock -s
 
 #Install JQ & unzip
 RUN apt-get update -y &&\
