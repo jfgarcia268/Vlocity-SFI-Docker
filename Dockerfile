@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:16.04
 
 #Install JQ & unzip
 RUN apt-get update -y &&\
@@ -13,7 +13,8 @@ RUN add-apt-repository ppa:git-core/ppa &&\
 #Install NodeJS and Java
 RUN apt-get -y install curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_18.x  | bash
-RUN apt-get -y install nodejs default-jdk
+RUN apt-get -y install nodejs
+RUN apt-get -y install default-jdk
 
 #Install puppeteer Dep
 RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0
