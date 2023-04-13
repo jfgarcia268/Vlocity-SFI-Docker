@@ -12,7 +12,7 @@ RUN add-apt-repository ppa:git-core/ppa &&\
     
 #Install NodeJS and Java
 RUN apt-get update -y &&\
-    apt-get -y install curl gnupg libc6 &&\
+    apt-get -y install curl gnupg libc6 libgbm-dev &&\
     curl -sL https://deb.nodesource.com/setup_14.x  | bash - &&\
     apt-get -y install nodejs default-jdk
 
