@@ -19,12 +19,10 @@ RUN apt-get update -y &&\
 #Install puppeteer Dep
 RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0
 
-# Install latest NPM
-RUN npm install -g npm
 
 #Install NodeJS Packages
-RUN npm config set unsafe-perm=true &&\
-    npm install --global sfdx-cli vlocity puppeteer &&\
+#RUN npm config set unsafe-perm=true &&\
+RUN npm install --global sfdx-cli vlocity puppeteer &&\
     #npm install --global sfdx-cli@7.162.0 vlocity puppeteer &&\
     npm install puppeteer --save
 
