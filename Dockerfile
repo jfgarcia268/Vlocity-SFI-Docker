@@ -26,10 +26,12 @@ RUN npm install --global sfdx-cli vlocity puppeteer
     #npm install --global sfdx-cli@7.162.0 vlocity puppeteer &&\
     #npm install puppeteer --save
 
+
 #Install SFDX-CLI Plugins
 RUN echo "y" | sfdx plugins:install vlocityestools &&\
-    sfdx plugins:install @salesforce/sfdx-scanner &&\
     echo "y" | sfdx plugins:install sfdx-git-delta
+
+RUN sfdx plugins:install @salesforce/sfdx-scanner
 
 RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
     export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
