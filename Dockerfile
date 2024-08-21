@@ -12,9 +12,9 @@ RUN add-apt-repository ppa:git-core/ppa &&\
 
 #Install NodeJS and Java
 RUN apt-get -y install curl gnupg &&\
-    curl -sL https://deb.nodesource.com/setup_14.x  | bash - &&\
+    curl -sL https://deb.nodesource.com/setup_18.x  | bash - &&\
     apt-get -y install nodejs default-jdk
 
-#Install SFDX and plugins
+#Install SF-CLI and plugins
 RUN npm config set unsafe-perm=true &&\
     npm install @salesforce/cli --global
