@@ -18,7 +18,7 @@ RUN apt-get -y install curl gnupg &&\
 #Install SFDX and plugins
 RUN npm config set unsafe-perm=true &&\
     npm install @salesforce/cli --global &&\
-    sfdx plugins:install @salesforce/sfdx-scanner sfdmu
+#    sf plugins install @salesforce/sfdx-scanner sfdmu
 
 #Install acu-pack
 #RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
