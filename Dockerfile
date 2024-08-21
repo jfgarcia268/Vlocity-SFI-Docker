@@ -25,6 +25,6 @@ RUN npm config set unsafe-perm=true &&\
 #    export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
 # && echo "y" | sfdx plugins:install "https://jgarciagonzalezSFDC:${SF_GITHUB_PASS}@github.com/forcedotcom/acu-pack.git"
 
-RUN chmod -R go+rwx ${HOME} &&\
-    chmod -R go+rwx /root &&\
-    chmod 600 /root/.sfdx/key.json 2>&1 >dev/null
+#RUN chmod -R go+rwx ${HOME} &&\
+#    chmod -R go+rwx /root &&\
+#    chmod 600 /root/.sfdx/key.json 2>&1 >dev/null
