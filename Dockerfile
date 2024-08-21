@@ -17,7 +17,7 @@ RUN apt-get -y install curl gnupg &&\
 
 #Install SFDX and plugins
 RUN npm config set unsafe-perm=true &&\
-    npm install @salesforce/cli --global &&\
+    npm install @salesforce/cli --global
 #    sf plugins install @salesforce/sfdx-scanner sfdmu
 
 #Install acu-pack
