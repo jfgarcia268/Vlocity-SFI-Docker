@@ -16,5 +16,4 @@ RUN apt-get -y install curl gnupg &&\
     apt-get -y install nodejs default-jdk
 
 #Install SF-CLI and plugins
-RUN npm config set unsafe-perm=true &&\
-    npm install @salesforce/cli --global
+RUN npm install @salesforce/cli --global
