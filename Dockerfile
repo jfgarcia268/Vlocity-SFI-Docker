@@ -17,3 +17,4 @@ RUN apt-get -y install curl gnupg &&\
 
 #Install SF-CLI and plugins
 RUN npm install @salesforce/cli --global
+RUN sf plugins install @salesforce/sfdx-scanner
