@@ -15,23 +15,24 @@ RUN apt-get -y install curl gnupg &&\
     curl -sL https://deb.nodesource.com/setup_22.x  | bash - &&\
     apt-get -y install nodejs default-jdk
 
-# 1. Install SF CLI and the plugin globally
-RUN npm install @salesforce/cli sfdx-git-delta --global
-
-# 2. Link using the actual path where NPM stores the source code
-# We use the 'npm root -g' path directly
-RUN sf plugins link $(npm root -g)/sfdx-git-delta --no-install
-
-# 3. Security and Global Config
+# 1. SET THE ENVIRONMENT FIRST
+# This tells sf to use a global, shared location for everything
 ENV SF_ALLOW_IT_ANYWAY=true
 ENV SF_DATA_DIR=/usr/local/share/sf
 ENV SF_CONFIG_DIR=/usr/local/share/sf
 ENV SF_CACHE_DIR=/usr/local/share/sf
 
-# 4. CRITICAL: Initialize the directory so it's readable by all users
+# 2. Prepare the global directory with open permissions
 RUN mkdir -p /usr/local/share/sf && chmod -R 777 /usr/local/share/sf
 
-# 5. Verification (If this fails, the build stops here)
+# 3. Install CLI and Plugin
+RUN npm install @salesforce/cli sfdx-git-delta --global
+
+# 4. Link using the dynamic NPM root path
+# Using $(npm root -g) is safer than hardcoding /usr/lib
+RUN sf plugins link $(npm root -g)/sfdx-git-delta --no-install
+
+# 5. VERIFICATION (This should now pass)
 RUN sf sgd source delta --help
 
 
