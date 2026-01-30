@@ -23,6 +23,11 @@ RUN sf plugins link /usr/lib/node_modules/sfdx-git-delta --no-install
 
 # 3. Explicitly trust the plugin (Mandatory for CI)
 ENV SF_ALLOW_IT_ANYWAY=true
+ENV SF_DATA_DIR=/usr/local/share/sf
+ENV SF_CONFIG_DIR=/usr/local/share/sf
+ENV SF_CACHE_DIR=/usr/local/share/sf
+
+
 #Install acu-pack
 #RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
 #    export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
