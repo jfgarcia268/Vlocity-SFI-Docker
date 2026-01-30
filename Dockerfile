@@ -19,6 +19,9 @@ RUN apt-get -y install curl gnupg &&\
 RUN npm install @salesforce/cli --global &&\
     echo y | sf plugins install sfdx-git-delta
 
+RUN sf plugins link /usr/local/lib/node_modules/sfdx-git-delta
+
+ENV SF_ALLOW_IT_ANYWAY=true
 #Install acu-pack
 #RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
 #    export SF_GITHUB_PASS=$(cat /run/secrets/SF_GITHUB_PASS) \ 
