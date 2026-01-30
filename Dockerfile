@@ -15,14 +15,13 @@ RUN apt-get -y install curl gnupg &&\
     curl -sL https://deb.nodesource.com/setup_22.x  | bash - &&\
     apt-get -y install nodejs default-jdk
 
-#Install SFDX and plugins
-# 1. Install SF CLI and the SGD plugin code globally via NPM
+# 1. Install SF CLI and the SGD plugin globally
 RUN npm install @salesforce/cli sfdx-git-delta --global
 
-# 2. Tell SF CLI where to find the plugin code (now it actually exists here)
-RUN sf plugins link /usr/local/lib/node_modules/sfdx-git-delta
+# 2. Link it using the correct Ubuntu path (check /usr/lib/ instead of /usr/local/lib)
+RUN sf plugins link /usr/lib/node_modules/sfdx-git-delta --no-install
 
-# 3. Bypass security warnings for unsigned plugins
+# 3. Explicitly trust the plugin (Mandatory for CI)
 ENV SF_ALLOW_IT_ANYWAY=true
 #Install acu-pack
 #RUN --mount=type=secret,id=SF_GITHUB_PASS,dst=/run/secrets/SF_GITHUB_PASS \
