@@ -16,8 +16,7 @@ RUN apt-get -y install curl gnupg &&\
     apt-get -y install nodejs default-jdk
 
 #Install SFDX and plugins
-RUN npm config set unsafe-perm=true &&\
-    npm install @salesforce/cli --global &&\
+RUN npm install @salesforce/cli --global &&\
     echo "y" | sf plugins install sfdx-git-delta
 
 #Install acu-pack
